@@ -4,7 +4,8 @@ from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from datetime import date
 from django.db.models import Prefetch
-
+from users.permissions import IsAdmin
+from rest_framework.permissions import IsAuthenticated
 from .serializers import (
     RideSerializer,
     RideEventSerializer,
@@ -17,7 +18,7 @@ from .paginations import (
 )
 
 class Ride(ModelViewSet):
-    permission_classes = ()
+    permission_classes = (IsAdmin, IsAuthenticated, )
     serializer_class = RideSerializer
     filterset_class = RideFilter
     pagination_class = RidePagination
