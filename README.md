@@ -18,7 +18,7 @@ Create a .env file in the root directory and add your environment variables:
 ### 3. Install dependencies
 pip install -r requirements.txt
 
-### Migrate Database
+### 4. Migrate Database
 python manage.py migrate
 
 

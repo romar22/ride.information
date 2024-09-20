@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Ride(models.Model):
     EN_ROUTE = 'en-route'
@@ -31,4 +32,4 @@ class RideEvent(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id_event}"
+        return f"{self.description}"

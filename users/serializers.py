@@ -23,3 +23,17 @@ class LoginSerializer(Serializer):
             'refresh': str(refresh), 
             'access': str(refresh.access_token) 
         } 
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = (
+            'user_id',
+            'role', 
+            'first_name', 
+            'last_name', 
+            'email', 
+            'phone_number',
+        )
