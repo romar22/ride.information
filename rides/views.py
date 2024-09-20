@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
-from datetime import date
+from django.utils import timezone
+from datetime import timedelta
 from django.db.models import Prefetch
 from users.permissions import IsAdmin
 from rest_framework.permissions import IsAuthenticated
@@ -37,5 +38,5 @@ class Ride(ModelViewSet):
         return self.serializer_class.Meta.model.objects.all()\
             .select_related('id_rider', 'id_driver')\
             .prefetch_related(
-                Prefetch('ride_events', queryset=RideEvent.objects.filter(created_at__date=date.today()))
+                Prefetch('ride_events', queryset=RideEvent.objects.filter(created_at__gte=timezone.now() - timedelta(hours=24)))
             )
