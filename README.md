@@ -20,3 +20,5 @@ pip install -r requirements.txt
 
 ### Migrate Database
 python manage.py migrate
+
+

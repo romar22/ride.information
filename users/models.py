@@ -4,8 +4,12 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     ADMIN = 'admin'
+    DRIVER = 'driver'
+    RIDER = 'rider'
     ROLES = (
         (ADMIN, 'Admin'),
+        (DRIVER, 'Driver'),
+        (RIDER, 'Rider')
     )
 
     user_id = models.AutoField(primary_key=True)
