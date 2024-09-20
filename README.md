@@ -19,9 +19,14 @@ Create a .env file in the root directory and add your environment variables:
 pip install -r requirements.txt
 
 ### 4. Migrate Database
-python manage.py migrate
+- python manage.py migrate
+- python manage.py runserver
 
+### Run tests
+python manage.py test
 
+### Api documentation using swagger
+http://127.0.0.1:8000/api/docs/
 
 
 

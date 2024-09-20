@@ -3,5 +3,5 @@ from users.views import Login
 
 
 urlpatterns = [
-    path('login/', Login.as_view({  'post': 'authenticate' })),
+    path('login/', Login.as_view({'post': 'authenticate'}), name='login'),
 ]
