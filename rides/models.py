@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 class Ride(models.Model):
     EN_ROUTE = 'en-route'

@@ -29,12 +29,11 @@ class RideSerializer(ModelSerializer):
             'dropoff_latitude',
             'dropoff_longitude',
             'pickup_time',
-            'ride_events'
         )
     
     def to_representation(self, instance):
         resp = super().to_representation(instance)
-        resp['ride_events'] = RideEventSerializer(instance.ride_events.all(), many=True).data
+        resp['todays_ride_events'] = RideEventSerializer(instance.ride_events.all(), many=True).data
         resp['id_rider'] = UserSerializer(instance.id_rider).data
         resp['id_driver'] = UserSerializer(instance.id_driver).data
 

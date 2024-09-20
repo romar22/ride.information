@@ -2,8 +2,12 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from datetime import date
+from django.db.models import Prefetch
+
 from .serializers import (
     RideSerializer,
+    RideEventSerializer,
 )
 from .filters import (
     RideFilter
@@ -28,4 +32,9 @@ class Ride(ModelViewSet):
     ordering = ('pickup_time',)
 
     def get_queryset(self):
-        return self.serializer_class.Meta.model.objects.all()
+        RideEvent = RideEventSerializer.Meta.model
+        return self.serializer_class.Meta.model.objects.all()\
+            .select_related('id_rider', 'id_driver')\
+            .prefetch_related(
+                Prefetch('ride_events', queryset=RideEvent.objects.filter(created_at__date=date.today()))
+            )
